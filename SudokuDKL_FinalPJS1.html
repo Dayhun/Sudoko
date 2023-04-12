@@ -43,15 +43,17 @@
                 }
                 table.append(tr);
             }
-            $("td").each(function () {
-                // find the blank and add input tag
-                if ($(this).text() == "") {
-                    let input = $("<input/>");
-                    input.addClass("blankInput");
-                    $(this).append(input);
-                }
-            });
+            // $("td").each(function () {
+            //     // find the blank and add input tag
+            //     if ($(this).text() == "") {
+            //         let input = $("<input/>");
+            //         input.addClass("blankInput");
+            //         $(this).append(input);
+            //     }
+            // });
+            findBlank();
         };
+
         let loadJson = () => {
             const xmlHTTP = new XMLHttpRequest();
             xmlHTTP.onload = function () {
@@ -67,14 +69,15 @@
         };
         loadJson();
 
-        $("table").hover(
-            function () {
-                // console.log("on");
-            },
-            function () {
-                // console.log("off");
-            }
-        );
+        // $("table").hover(
+        //     function () {
+        //         // console.log("on");
+        //     },
+        //     function () {
+        //         // console.log("off");
+        //     }
+        // );
+
         // JS START
         function randomBlank(values) {
             for (let array of values) {
@@ -92,6 +95,22 @@
                     }
                 }
             }
+        }
+
+        function findBlank() {
+            $("td").each(function () {
+                // find the blank and add input tag
+                if ($(this).text() == "") {
+                    let input = $("<input/>");
+                    input.addClass("blankInput");
+                    $(this).append(input);
+                    rowValidation();
+                }
+            });
+        }
+
+        function rowValidation() {
+            // console.log();
         }
     </script>
 </html>
