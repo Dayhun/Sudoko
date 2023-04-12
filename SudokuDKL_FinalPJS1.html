@@ -4,14 +4,15 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" />
         <title>Document</title>
-        <style>
+        <!-- <style>
             td {
                 border: solid 1px;
                 border-collapse: collapse;
                 padding: 4px;
             }
-        </style>
+        </style> -->
     </head>
     <body>
         <header>
@@ -23,6 +24,10 @@
             </ul>
         </header>
         <table></table>
+        <article>
+            <span class="before">_</span>
+            <span class="clicked"><input type="number" /></span>
+        </article>
     </body>
     <script>
         let size, values;
@@ -53,6 +58,14 @@
         };
         loadJson();
 
+        $("table").hover(
+            function () {
+                console.log("on");
+            },
+            function () {
+                console.log("off");
+            }
+        );
         // JS START
         function randomBlank(values) {
             for (let array of values) {
