@@ -52,6 +52,7 @@
             //     }
             // });
             findBlank();
+            // rowValidation();
         };
 
         let loadJson = () => {
@@ -104,13 +105,25 @@
                     let input = $("<input/>");
                     input.addClass("blankInput");
                     $(this).append(input);
-                    rowValidation();
+                    // console.log($(this));
+                    $(this).keyup(rowValidation);
                 }
             });
         }
+        // rowValidation();
 
-        function rowValidation() {
-            // console.log();
-        }
+        // function rowValidation(e) {
+        //     e.preventDefault();
+        //     console.log(e)
+        //     console.log(e.currentTarget.parentElement);
+        //     console.log(e.currentTarget);
+        //     console.log(e.key);
+        //     // console.log($("input"));
+        // }
+
+        // $("input").keyup(rowValidation);
+        // $("input").click(() => {
+        //     console.log("hi");
+        // });
     </script>
 </html>
