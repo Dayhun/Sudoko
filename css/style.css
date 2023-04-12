@@ -36,8 +36,18 @@ td {
     font-size: 35px;
     font-weight: 600;
     color: rgb(161, 161, 161);
-    background-color: rgb(252, 252, 252);
+    background-color: rgb(240, 240, 240);
 }
+
+.blankInput {
+    width: 95%;
+    height: 95%;
+    border: none;
+}
+.blankInput:hover {
+    background-color: antiquewhite;
+    cursor: pointer;
+} 
 
 .before:hover {
     background-image: linear-gradient(to left top, white, white, white, white, red);
@@ -48,10 +58,11 @@ td {
 
 
 input {
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 95%;
     text-align: center;
     font-size: 40px;
+    border: none;
 }
 
 /* test part */
@@ -68,9 +79,17 @@ span {
     border: 3px solid gray;
 }
 .clicked {
-    border: none;
+    border: 3px solid;
 }
 article {
     display: flex;
     column-gap: 3vh;
+}
+button {
+    margin: 3vh;
+    height: 5vh;
+    width: 5vh;
+}
+blockquote {
+    background-color: red;
 }

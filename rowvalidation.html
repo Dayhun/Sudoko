@@ -71,14 +71,14 @@
             xmlHTTP.send();
         };
         loadJson();
-        // $("td").hover(
-        //     function(){
-        //         console.log("on")
-        //     },
-        //     function(){
-        //         console.log("off")
-        //     }
-        // )
+        $("td").hover(
+            function(){
+                console.log("on")
+            },
+            function(){
+                console.log("off")
+            }
+        )
 
         // JS START
         function randomBlank(values) {
@@ -107,6 +107,20 @@
                     input.addClass("blankInput");
                     $(this).append(input);
                     // rowValidation();
+                    input.hover(
+                        function(){//mouseon
+                                input.css("color","black");    
+                        },function(){//mouseoff
+                            for(let i=0; i<10; i++){
+                                if(input.val() == input.parent().parent().children().eq(i).text() && input.val() != ""){
+                                    input.css("color","red");
+                                }else if(input.parent().siblings().eq(i).children().eq(0).val() && input.val() != ""){
+                                    input.css("color","red");
+                                }
+                            }
+                            // if(input.val() == )
+                        }
+                    )
                 }
             });
         }
@@ -114,6 +128,19 @@
         // function rowValidation() {
         //     // console.log("a");
         // }
+
+        let input = $("input");
+
+        // let rowValidation = (e)=>{
+        //     let key = $(e.target).val();
+        //     console.log(key);
+        // }
+        // input.keyup(rowValidation);
+
+
+        // $(".blankInput").hover(function(){
+        //     console.log("a");
+        // })
 
         // !!! under here finish button function !!!
         // $(".finish").click(function(){
