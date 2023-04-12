@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <link rel="stylesheet" href="css/style.css" />
         <title>Document</title>
         <!-- <style>
@@ -32,16 +33,24 @@
     <script>
         let size, values;
         let tablePop = (values) => {
-            const table = document.querySelector("table");
+            const table = $("table");
             for (let rowidx in values) {
-                let tr = document.createElement("tr");
+                let tr = $("<tr></tr>");
                 for (let colIdx in values[rowidx]) {
-                    let td = document.createElement("td");
-                    td.innerHTML = values[rowidx][colIdx];
-                    tr.appendChild(td);
+                    let td = $("<td></td>");
+                    td.append(values[rowidx][colIdx]);
+                    tr.append(td);
                 }
-                table.appendChild(tr);
+                table.append(tr);
             }
+            $("td").each(function () {
+                // find the blank and add input tag
+                if ($(this).text() == "") {
+                    let input = $("<input/>");
+                    input.addClass("blankInput");
+                    $(this).append(input);
+                }
+            });
         };
         let loadJson = () => {
             const xmlHTTP = new XMLHttpRequest();
@@ -60,17 +69,16 @@
 
         $("table").hover(
             function () {
-                console.log("on");
+                // console.log("on");
             },
             function () {
-                console.log("off");
+                // console.log("off");
             }
         );
         // JS START
         function randomBlank(values) {
             for (let array of values) {
                 let newArray = []; // make new array to check the index.
-                console.log(`start Array: ${array}`);
                 // choose 5 random numbers to make empty value
                 for (let i = 0; i < 5; i++) {
                     let idx = Math.floor(Math.random() * array.length);
@@ -83,20 +91,7 @@
                         i--;
                     }
                 }
-                console.log(`Final: ${array}`);
             }
         }
-
-        // function inputBlank() {
-        //     let td = document.getElementsByTagName("td");
-        //     console.log(td.eq(0));
-        //     for (let blank of td) {
-        //         console.log(blank);
-
-        //         if (document.getElementsByTagName("td").innerText == "") {
-        //         }
-        //     }
-        // }
-        // inputBlank();
     </script>
 </html>
