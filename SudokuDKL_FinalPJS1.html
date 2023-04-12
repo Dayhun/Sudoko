@@ -47,14 +47,6 @@
             // function to check if the number is the same as in the defaut array 
             //⚠️ NOT WORKING ⚠️ - all as incorrect
 
-            /* let check = (tdVal,rowidx,colIdx) => {
-                if(tdVal === values[rowidx][colIdx]){
-                    console.log("CORRECT");
-                }
-                else {
-                    console.log("INcorrect");
-                }
-            } */
             let check = (inputVal,rowidx,colIdx) => {
                 if(inputVal === values[rowidx][colIdx]){
                     console.log("CORRECT");
@@ -62,6 +54,7 @@
                 else {
                     console.log("INcorrect");
                 }
+                console.log(values[rowidx][colIdx]);
             }
             
             $("td").each(function () {
