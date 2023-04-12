@@ -42,14 +42,36 @@
             const xmlHTTP = new XMLHttpRequest();
             xmlHTTP.onload = function () {
                 let output = JSON.parse(this.responseText)[0];
-                console.log(output);
+                // console.log(output);
                 size = output.size;
                 values = output.values;
+                randomBlank(values); //
                 tablePop(values);
             };
             xmlHTTP.open("GET", "./source.json", true);
             xmlHTTP.send();
         };
         loadJson();
+
+        // JS START
+        function randomBlank(values) {
+            for (let array of values) {
+                let newArray = []; // make new array to check the index.
+                console.log(`start Array: ${array}`);
+                // choose 5 random numbers to make empty value
+                for (let i = 0; i < 5; i++) {
+                    let idx = Math.floor(Math.random() * array.length);
+                    if (newArray.indexOf(idx) === -1) {
+                        // if there is any duplicate index, run
+                        newArray.push(idx);
+                        array.splice(idx, 1, "");
+                    } else {
+                        // if it is duplicate, run
+                        i--;
+                    }
+                }
+                console.log(`Final: ${array}`);
+            }
+        }
     </script>
 </html>
