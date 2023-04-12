@@ -114,53 +114,15 @@
                             for(let i=0; i<10; i++){
                                 if(input.val() == input.parent().parent().children().eq(i).text() && input.val() != ""){
                                     input.css("color","red");
-                                }else if(input.parent().siblings().eq(i).children().eq(0).val() && input.val() != ""){
+                                }else if(input.val() == input.parent().siblings().eq(i).children().eq(0).val() && input.val() != ""){
                                     input.css("color","red");
                                 }
                             }
-                            // if(input.val() == )
                         }
                     )
                 }
             });
         }
-
-        // function rowValidation() {
-        //     // console.log("a");
-        // }
-
-        let input = $("input");
-
-        // let rowValidation = (e)=>{
-        //     let key = $(e.target).val();
-        //     console.log(key);
-        // }
-        // input.keyup(rowValidation);
-
-
-        // $(".blankInput").hover(function(){
-        //     console.log("a");
-        // })
-
-        // !!! under here finish button function !!!
-        // $(".finish").click(function(){
-        //     let input = $("input");
-        //     for(let i=0; i<45; i++){
-        //         let thisInput = input.eq(i);
-        //         let thisTd = thisInput.parent();
-        //         let inputValue = thisInput.val();
-        //         input.eq(i).remove();
-        //         thisTd.text(inputValue);
-        //     }
-        //     validation();
-        // })
-
-        // function validation() {
-        //     if($("tr").eq(0).children().eq(0).text() == 1){
-        //         console.log("worked");
-        //     }
-        // }
-        
 
     </script>
 </html>
