@@ -27,7 +27,7 @@
         <table></table>
         <article>
             <span class="before">_</span>
-            <span class="clicked"><input type="number" /></span>
+            <!-- <span class="clicked"><input type="number" /></span> -->
         </article>
     </body>
     <script>
@@ -42,15 +42,68 @@
                     tr.append(td);
                 }
                 table.append(tr);
+
             }
+            // function to check if the number is the same as in the defaut array 
+            //⚠️ NOT WORKING ⚠️ - all as incorrect
+
+            /* let check = (tdVal,rowidx,colIdx) => {
+                if(tdVal === values[rowidx][colIdx]){
+                    console.log("CORRECT");
+                }
+                else {
+                    console.log("INcorrect");
+                }
+            } */
+            let check = (inputVal,rowidx,colIdx) => {
+                if(inputVal === values[rowidx][colIdx]){
+                    console.log("CORRECT");
+                }
+                else {
+                    console.log("INcorrect");
+                }
+            }
+            
             $("td").each(function () {
                 // find the blank and add input tag
                 if ($(this).text() == "") {
                     let input = $("<input/>");
                     input.addClass("blankInput");
-                    $(this).append(input);
+
+
+                    // variable to  get the text of td
+                    let colIdx = $(this).text();
+                    // variable to get the index of td father = tr
+                    let rowidx = $(this).parent().index();
+
+                    // function when the user click at a input
+                    let click =() =>{
+                        
+                        // click depends on each input was clicked
+                        $("input").each(function() 
+                        {
+                            // the value the user send cannot be null
+                            if($(this).val() != "" && $(this).val() != null){
+                                // variable to get the input value
+                                let inputVal = $(this).val();
+                                // place the value in the td
+                                // let tdVal = $("td").text(inputVal);
+
+                                // console.log(tdVal);
+                                console.log(inputVal);
+
+                                // check the tdVal
+                                // check(tdVal,rowidx,colIdx);
+                                check(inputVal,rowidx,colIdx);
+                            }
+                       
+                        });
+                    }
+
+                    $(this).append(input).keyup(click);
                 }
             });
+
         };
         let loadJson = () => {
             const xmlHTTP = new XMLHttpRequest();
@@ -62,7 +115,7 @@
                 randomBlank(values); //
                 tablePop(values);
             };
-            xmlHTTP.open("GET", "./source.json", true);
+            xmlHTTP.open("GET", "./data/source.json", true);
             xmlHTTP.send();
         };
         loadJson();
@@ -86,7 +139,8 @@
                         // if there is any duplicate index, run
                         newArray.push(idx);
                         array.splice(idx, 1, "");
-                    } else {
+                    } 
+                    else {
                         // if it is duplicate, run
                         i--;
                     }
