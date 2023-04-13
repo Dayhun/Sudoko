@@ -42,6 +42,9 @@
                     let td = $("<td></td>");
                     td.append(values[rowidx][colIdx]);
                     tr.append(td);
+                    for(let i=0; i<10; i++){ //givingclass
+                        $(`td:nth-child(${i})`).addClass(`col${i}`);
+                    }
                 }
                 table.append(tr);
             }
@@ -71,14 +74,6 @@
             xmlHTTP.send();
         };
         loadJson();
-        $("td").hover(
-            function(){
-                console.log("on")
-            },
-            function(){
-                console.log("off")
-            }
-        )
 
         // JS START
         function randomBlank(values) {
@@ -106,23 +101,43 @@
                     let input = $("<input/>");
                     input.addClass("blankInput");
                     $(this).append(input);
-                    // rowValidation();
-                    input.hover(
-                        function(){//mouseon
-                                input.css("color","black");    
-                        },function(){//mouseoff
-                            for(let i=0; i<10; i++){
-                                if(input.val() == input.parent().parent().children().eq(i).text() && input.val() != ""){
+                    input.keyup(function(){
+                        input.css("color","black");
+                        
+                        for(let i=0; i<10; i++){//rowvalidation
+                                if(input.val() == input.parent().parent().children().eq(i).text() && input.val() != ""){//rowvalidation checking the same row texts
                                     input.css("color","red");
-                                }else if(input.val() == input.parent().siblings().eq(i).children().eq(0).val() && input.val() != ""){
+                                }else if(input.val() == input.parent().siblings().eq(i).children().eq(0).val() && input.val() != ""){//rowvalidation checking the same row input values
                                     input.css("color","red");
+                                }else if(input.parent().hasClass(`col${i}`)){
+                                    for(let x=0; x<10; x++){
+                                        if(input.val() == $(`.col${i}`).eq(x).text() && input.val() != ""){//columnvalidation checking the same column texts
+                                            input.css("color","red");        
+                                        }else if(x!=i && input.val() == $(`.col${i}`).children().eq(x).val() && input.val() != ""){//columnvalidation checking the same column input values
+                                            // input.css("color","red");
+                                            // console.log("test");
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    )
+                    })
                 }
             });
         }
+
+        function addColumnClass() {
+
+        }
+
+                              //columnvalidation
+                            // console.log(input.parent());
+                            // for(let i=0; i<10; i++){
+                            //     if(input.parent() == input.parent().parent().children(i)){
+                            //         let idx = i;
+                            //     }
+                            //     return idx;
+                            //     break;
+                            // }
 
     </script>
 </html>
