@@ -47,14 +47,22 @@
             // function to check if the number is the same as in the defaut array 
             //⚠️ NOT WORKING ⚠️ - all as incorrect
 
-            let check = (inputVal,rowidx,colIdx) => {
-                if(inputVal === values[rowidx][colIdx]){
+            /* let check = (tdVal,rowidx,colIdx) => {
+                if(tdVal === values[rowidx][colIdx]){
                     console.log("CORRECT");
                 }
                 else {
                     console.log("INcorrect");
                 }
-                console.log(values[rowidx][colIdx]);
+            } */
+            let check = (inputVal,rowidx,colIdx) => {
+                if(inputVal === values[rowidx][colIdx]){
+                    console.log("CORRECT");
+                }
+                else {
+                    console.log(values[rowidx][colIdx]);
+                    console.log("INcorrect");
+                }
             }
             
             $("td").each(function () {
@@ -64,10 +72,10 @@
                     input.addClass("blankInput");
 
 
-                    // variable to  get the text of td
-                    let colIdx = $(this).text();
-                    // variable to get the index of td father = tr
-                    let rowidx = $(this).parent().index();
+                    // // variable to  get the text of td
+                    // let colIdx = $(this).text();
+                    // // variable to get the index of td father = tr
+                    // let rowidx = $(this).parent().index();
 
                     // function when the user click at a input
                     let click =() =>{
@@ -87,7 +95,7 @@
 
                                 // check the tdVal
                                 // check(tdVal,rowidx,colIdx);
-                                check(inputVal,rowidx,colIdx);
+                                // check(inputVal,rowidx,colIdx);
                             }
                        
                         });
