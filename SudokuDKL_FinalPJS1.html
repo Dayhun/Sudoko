@@ -189,6 +189,49 @@
                     input.addClass("blankInput");
                     $(this).append(input); // add input tag
                     //when user typed number in the blank
+                    // row validation
+                    $(this).keyup(function (e) {
+                        $(e.target).removeClass("errorRow");
+                        for (let i = 0; i < 10; i++) {
+                            //rowvalidation
+                            if (
+                                $(e.target).val() ==
+                                    $(e.target)
+                                        .parent()
+                                        .parent()
+                                        .children()
+                                        .eq(i)
+                                        .text() &&
+                                $(e.target).val() != ""
+                            ) {
+                                //rowvalidation checking the same row texts
+                                $(e.target).addClass("errorRow");
+                            } else if (
+                                $(e.target).val() ==
+                                    $(e.target)
+                                        .parent()
+                                        .siblings()
+                                        .eq(i)
+                                        .children()
+                                        .eq(0)
+                                        .val() &&
+                                $(e.target).val() != ""
+                            ) {
+                                //rowvalidation checking the same row input values
+                                $(e.target).addClass("errorRow");
+                            } else if ($(e.target).val() == ""){
+                                $(e.target).removeClass("errorRow errorCol errorBlock errorInput");
+                            }
+                        }
+                    });
+                    // $(this).keyup(function (e) {
+                    //     $(e.target).removeClass("errorDigit");
+                    //     if ($(e.target).val() > 9 || $(e.target).val() == 0) {
+                    //         $(e.target).addClass("errorDigit");
+                    //     }
+                    // });
+                    
+                    //column validation start
                     $(this).keyup(function () {
                         let classVal = $(this).attr("class"); // typed blank's td class name
                         // column Validation with input blanks

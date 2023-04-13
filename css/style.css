@@ -60,24 +60,16 @@ input {
     height: 95%;
     border: none;
 }
-.errorCol {
-    color: red;
-    width: 95%;
-    height: 95%;
-    border: none;
-}
-.errorBlock {
-    color: red;
-    width: 95%;
-    height: 95%;
-    border: none;
-}
+.errorRow,
+.errorDigit,
+.errorCol,
+.errorBlock,
 .errorInput {
     color: red;
     width: 95%;
     height: 95%;
-    border: none;
 }
+
 .before:hover {
     background-image: linear-gradient(
         to left top,
