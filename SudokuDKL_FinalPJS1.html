@@ -18,7 +18,7 @@
             </ul>
         </header>
         <table></table>
-        <button class="finish">Done</button>
+        <button class="finish" onclick="checkAnswer()">Done</button>
     </body>
     <script>
         let size, values;
@@ -781,5 +781,24 @@
                 }
             });
         }
+
+        let answer = null;
+        $.getJSON("http://127.0.0.1:5502/data/source.json",
+        (data)=> {
+            answer = data;
+            checkAnswer();
+
+        }
+        );
+
+        let checkAnswer = () => {
+            console.log(answer[0].values)
+            let answerValue = answer[0].values;
+            for (let i = 1; i < answerValue.length; i++) {
+                if (answerValue[i] === answerValue[i-1]) {
+                    alert("Same values!");
+                }
+            }
+        };
     </script>
 </html>
