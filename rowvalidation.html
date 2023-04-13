@@ -18,9 +18,11 @@
             </ul>
         </header>
         <table></table>
+        <button class="finish">Done</button>
+        <!-- test part -->
         <article>
-            <span class="before">_</span>
-            <span class="clicked"><input type="number" /></span>
+            <span class="before"></span>
+            <span class="clicked"><input type="number"></span>
         </article>
     </body>
     <script>
@@ -39,9 +41,6 @@
                     td.attr("class", idx2);
                 }
                 table.append(tr);
-                // console.log(tr);
-                idx = idx + 10;
-                tr.attr("id", idx);
             }
             findBlank();
             makeBlock();
@@ -154,402 +153,62 @@
                 if ($(this).text() == "") {
                     let input = $("<input/>");
                     input.addClass("blankInput");
-                    $(this).append(input); // add input tag
-                    //when user typed number in the blank
-                    $(this).keyup(function(e){
-                        $(e.target).removeClass("errorRow");
-                        
-                        for(let i=0; i<10; i++){//rowvalidation
-                                if($(e.target).val() == $(e.target).parent().parent().children().eq(i).text() && $(e.target).val() != ""){//rowvalidation checking the same row texts
-                                    $(e.target).addClass("errorRow");
-                                }else if($(e.target).val() == $(e.target).parent().siblings().eq(i).children().eq(0).val() && $(e.target).val() != ""){//rowvalidation checking the same row input values
-                                    $(e.target).addClass("errorRow");
+                    $(this).append(input);
+                    // rowValidation();
+                    input.hover(
+                        function(){//mouseon
+                                input.css("color","black");    
+                        },function(){//mouseoff
+                            for(let i=0; i<10; i++){
+                                if(input.val() == input.parent().parent().children().eq(i).text() && input.val() != ""){
+                                    input.css("color","red");
+                                }else if(input.parent().siblings().eq(i).children().eq(0).val() && input.val() != ""){
+                                    input.css("color","red");
                                 }
                             }
-                    })
-                    $(this).keyup(function(e){
-                        $(e.target).removeClass("errorDigit");
-                        if($(e.target).val() > 9 || $(e.target).val() == 0){
-                            $(e.target).addClass("errorDigit");
+                            // if(input.val() == )
                         }
-                    })
-                    $(this).keyup(function () {
-                        let block1Input = [];
-                        let block2Input = [];
-                        let block3Input = [];
-                        let block4Input = [];
-                        let block5Input = [];
-                        let block6Input = [];
-                        let block7Input = [];
-                        let block8Input = [];
-                        let block9Input = [];
-                        // input validation
-                        $("input").each(function () {
-                            let inputID = $(this).parent().parent().attr("id");
-                            let inputClass = $(this).parent().attr("class");
-                            if (
-                                // block 1
-                                (inputID == 10 ||
-                                    inputID == 20 ||
-                                    inputID == 30) &&
-                                (inputClass == 1 ||
-                                    inputClass == 2 ||
-                                    inputClass == 3)
-                            ) {
-                                // put just number in the array
-                                if ($(this).val() != "") {
-                                    let inputVal = $(this).val();
-                                    block1Input.push(inputVal);
-                                }
-                            } else if (
-                                // block 2
-                                (inputID == 10 ||
-                                    inputID == 20 ||
-                                    inputID == 30) &&
-                                (inputClass == 4 ||
-                                    inputClass == 5 ||
-                                    inputClass == 6)
-                            ) {
-                                // put just number in the array
-                                if ($(this).val() != "") {
-                                    let inputVal = $(this).val();
-                                    block2Input.push(inputVal);
-                                }
-                            } else if (
-                                // block 3
-                                (inputID == 10 ||
-                                    inputID == 20 ||
-                                    inputID == 30) &&
-                                (inputClass == 7 ||
-                                    inputClass == 8 ||
-                                    inputClass == 9)
-                            ) {
-                                // put just number in the array
-                                if ($(this).val() != "") {
-                                    let inputVal = $(this).val();
-                                    block3Input.push(inputVal);
-                                }
-                            } else if (
-                                // block 4
-                                (inputID == 40 ||
-                                    inputID == 50 ||
-                                    inputID == 60) &&
-                                (inputClass == 1 ||
-                                    inputClass == 2 ||
-                                    inputClass == 3)
-                            ) {
-                                // put just number in the array
-                                if ($(this).val() != "") {
-                                    let inputVal = $(this).val();
-                                    block4Input.push(inputVal);
-                                }
-                            } else if (
-                                // block 5
-                                (inputID == 40 ||
-                                    inputID == 50 ||
-                                    inputID == 60) &&
-                                (inputClass == 4 ||
-                                    inputClass == 5 ||
-                                    inputClass == 6)
-                            ) {
-                                // put just number in the array
-                                if ($(this).val() != "") {
-                                    let inputVal = $(this).val();
-                                    block5Input.push(inputVal);
-                                }
-                            } else if (
-                                // block 6
-                                (inputID == 40 ||
-                                    inputID == 50 ||
-                                    inputID == 60) &&
-                                (inputClass == 7 ||
-                                    inputClass == 8 ||
-                                    inputClass == 9)
-                            ) {
-                                // put just number in the array
-                                if ($(this).val() != "") {
-                                    let inputVal = $(this).val();
-                                    block6Input.push(inputVal);
-                                }
-                            } else if (
-                                // block 7
-                                (inputID == 70 ||
-                                    inputID == 80 ||
-                                    inputID == 90) &&
-                                (inputClass == 1 ||
-                                    inputClass == 2 ||
-                                    inputClass == 3)
-                            ) {
-                                // put just number in the array
-                                if ($(this).val() != "") {
-                                    let inputVal = $(this).val();
-                                    block7Input.push(inputVal);
-                                }
-                            } else if (
-                                // block 8
-                                (inputID == 70 ||
-                                    inputID == 80 ||
-                                    inputID == 90) &&
-                                (inputClass == 4 ||
-                                    inputClass == 5 ||
-                                    inputClass == 6)
-                            ) {
-                                // put just number in the array
-                                if ($(this).val() != "") {
-                                    let inputVal = $(this).val();
-                                    block8Input.push(inputVal);
-                                }
-                            } else {
-                                // block 9
-                                if ($(this).val() != "") {
-                                    let inputVal = $(this).val();
-                                    block9Input.push(inputVal);
-                                }
-                            }
-                        });
-                        let trId = $(this).parent().attr("id");
-                        let tdClass = $(this).attr("class");
-                        let tdVal = $(this).children().val();
-                        // block validation
-                        // row 1,2,3
-                        if (trId == 10 || trId == 20 || trId == 30) {
-                            if (tdClass == 1 || tdClass == 2 || tdClass == 3) {
-                                // block 1
-                                for (let val of block1) {
-                                    if (tdVal == val && tdVal != "") {
-                                        // console.log(`tdVal:${tdVal}, val:${val}`)
-                                        $(this)
-                                            .children()
-                                            .addClass("errorBlock");
-                                    } else if (tdVal == "") {
-                                        $(this)
-                                            .children()
-                                            .removeClass("errorBlock");
-                                    }
-                                }
-                                // input duplication validation
-                                let block1Ip = new Set(block1Input);
-                                // if there is duplication,
-                                if (block1Ip.size < block1Input.length) {
-                                    $(this).children().addClass("errorInput");
-                                } else {
-                                    $(this)
-                                        .children()
-                                        .removeClass("errorInput");
-                                }
-                            } else if (
-                                // block 2
-                                tdClass == 4 ||
-                                tdClass == 5 ||
-                                tdClass == 6
-                            ) {
-                                for (let val of block2) {
-                                    if (tdVal == val && tdVal != "") {
-                                        $(this)
-                                            .children()
-                                            .addClass("errorBlock");
-                                    } else if (tdVal == "") {
-                                        $(this)
-                                            .children()
-                                            .removeClass("errorBlock");
-                                    }
-                                }
-                                // input duplication validation
-                                let block2Ip = new Set(block2Input);
-                                // if there is duplication,
-                                if (block2Ip.size < block2Input.length) {
-                                    $(this).children().addClass("errorInput");
-                                } else {
-                                    $(this)
-                                        .children()
-                                        .removeClass("errorInput");
-                                }
-                            } else {
-                                // block 3
-                                for (let val of block3) {
-                                    if (tdVal == val && tdVal != "") {
-                                        // console.log(`tdVal:${tdVal}, val:${val}`)
-                                        $(this)
-                                            .children()
-                                            .addClass("errorBlock");
-                                    } else if (tdVal == "") {
-                                        $(this)
-                                            .children()
-                                            .removeClass("errorBlock");
-                                    }
-                                }
-                                // input duplication validation
-                                let block3Ip = new Set(block3Input);
-                                // if there is duplication,
-                                if (block3Ip.size < block3Input.length) {
-                                    $(this).children().addClass("errorInput");
-                                } else {
-                                    $(this)
-                                        .children()
-                                        .removeClass("errorInput");
-                                }
-                            }
-                            // row 4,5,6
-                        } else if (trId == 40 || trId == 50 || trId == 60) {
-                            if (tdClass == 1 || tdClass == 2 || tdClass == 3) {
-                                // block 4
-                                for (let val of block4) {
-                                    if (tdVal == val && tdVal != "") {
-                                        // console.log(`tdVal:${tdVal}, val:${val}`)
-                                        $(this)
-                                            .children()
-                                            .addClass("errorBlock");
-                                    } else if (tdVal == "") {
-                                        $(this)
-                                            .children()
-                                            .removeClass("errorBlock");
-                                    }
-                                }
-                                // input duplication validation
-                                let block4Ip = new Set(block4Input);
-                                // if there is duplication,
-                                if (block4Ip.size < block4Input.length) {
-                                    $(this).children().addClass("errorInput");
-                                } else {
-                                    $(this)
-                                        .children()
-                                        .removeClass("errorInput");
-                                }
-                            } else if (
-                                // block 5
-                                tdClass == 4 ||
-                                tdClass == 5 ||
-                                tdClass == 6
-                            ) {
-                                for (let val of block5) {
-                                    if (tdVal == val && tdVal != "") {
-                                        // console.log(`tdVal:${tdVal}, val:${val}`)
-                                        $(this)
-                                            .children()
-                                            .addClass("errorBlock");
-                                    } else if (tdVal == "") {
-                                        $(this)
-                                            .children()
-                                            .removeClass("errorBlock");
-                                    }
-                                }
-                                // input duplication validation
-                                let block5Ip = new Set(block5Input);
-                                // if there is duplication,
-                                if (block5Ip.size < block5Input.length) {
-                                    $(this).children().addClass("errorInput");
-                                } else {
-                                    $(this)
-                                        .children()
-                                        .removeClass("errorInput");
-                                }
-                            } else {
-                                // block 6
-                                for (let val of block6) {
-                                    if (tdVal == val && tdVal != "") {
-                                        // console.log(`tdVal:${tdVal}, val:${val}`)
-                                        $(this)
-                                            .children()
-                                            .addClass("errorBlock");
-                                    } else if (tdVal == "") {
-                                        $(this)
-                                            .children()
-                                            .removeClass("errorBlock");
-                                    }
-                                }
-                                // input duplication validation
-                                let block6Ip = new Set(block6Input);
-                                // if there is duplication,
-                                if (block6Ip.size < block6Input.length) {
-                                    $(this).children().addClass("errorInput");
-                                } else {
-                                    $(this)
-                                        .children()
-                                        .removeClass("errorInput");
-                                }
-                            }
-                            // row 7,8,9
-                        } else {
-                            if (tdClass == 1 || tdClass == 2 || tdClass == 3) {
-                                // block 7
-                                for (let val of block7) {
-                                    if (tdVal == val && tdVal != "") {
-                                        // console.log(`tdVal:${tdVal}, val:${val}`)
-                                        $(this)
-                                            .children()
-                                            .addClass("errorBlock");
-                                    } else if (tdVal == "") {
-                                        $(this)
-                                            .children()
-                                            .removeClass("errorBlock");
-                                    }
-                                }
-                                // input duplication validation
-                                let block7Ip = new Set(block7Input);
-                                // if there is duplication,
-                                if (block7Ip.size < block7Input.length) {
-                                    $(this).children().addClass("errorInput");
-                                } else {
-                                    $(this)
-                                        .children()
-                                        .removeClass("errorInput");
-                                }
-                            } else if (
-                                // block 8
-                                tdClass == 4 ||
-                                tdClass == 5 ||
-                                tdClass == 6
-                            ) {
-                                for (let val of block8) {
-                                    if (tdVal == val && tdVal != "") {
-                                        $(this)
-                                            .children()
-                                            .addClass("errorBlock");
-                                    } else if (tdVal == "") {
-                                        $(this)
-                                            .children()
-                                            .removeClass("errorBlock");
-                                    }
-                                }
-                                // input duplication validation
-                                let block8Ip = new Set(block8Input);
-                                // if there is duplication,
-                                if (block8Ip.size < block8Input.length) {
-                                    $(this).children().addClass("errorInput");
-                                } else {
-                                    $(this)
-                                        .children()
-                                        .removeClass("errorInput");
-                                }
-                            } else {
-                                // block 9
-                                for (let val of block9) {
-                                    if (tdVal == val && tdVal != "") {
-                                        // console.log(`tdVal:${tdVal}, val:${val}`)
-                                        $(this)
-                                            .children()
-                                            .addClass("errorBlock");
-                                    } else if (tdVal == "") {
-                                        $(this)
-                                            .children()
-                                            .removeClass("errorBlock");
-                                    }
-                                }
-                                // input duplication validation
-                                let block9Ip = new Set(block9Input);
-                                // if there is duplication,
-                                if (block9Ip.size < block9Input.length) {
-                                    $(this).children().addClass("errorInput");
-                                } else {
-                                    $(this)
-                                        .children()
-                                        .removeClass("errorInput");
-                                }
-                            }
-                        }
-                    });
+                    )
                 }
             });
         }
+
+        // function rowValidation() {
+        //     // console.log("a");
+        // }
+
+        let input = $("input");
+
+        // let rowValidation = (e)=>{
+        //     let key = $(e.target).val();
+        //     console.log(key);
+        // }
+        // input.keyup(rowValidation);
+
+
+        // $(".blankInput").hover(function(){
+        //     console.log("a");
+        // })
+
+        // !!! under here finish button function !!!
+        // $(".finish").click(function(){
+        //     let input = $("input");
+        //     for(let i=0; i<45; i++){
+        //         let thisInput = input.eq(i);
+        //         let thisTd = thisInput.parent();
+        //         let inputValue = thisInput.val();
+        //         input.eq(i).remove();
+        //         thisTd.text(inputValue);
+        //     }
+        //     validation();
+        // })
+
+        // function validation() {
+        //     if($("tr").eq(0).children().eq(0).text() == 1){
+        //         console.log("worked");
+        //     }
+        // }
+        
+
     </script>
 </html>

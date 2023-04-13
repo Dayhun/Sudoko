@@ -108,23 +108,10 @@ article {
     column-gap: 3vh;
 }
 
-.errorRow {
+.errorRow,
+.errorDigit {
     color: red; 
     width: 95%;
     height: 95%;
 
 }
-
-.errorRow {
-    color: red; 
-    width: 95%;
-    height: 95%;
-
-}
-
-/* .col1 {
-    background-color: red;
-}
-.col2 {
-    background-color: blue;
-} */
