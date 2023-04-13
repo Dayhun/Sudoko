@@ -19,8 +19,15 @@
         </header>
         <table></table>
         <article>
-            <span class="before">_</span>
-            <span class="clicked"><input type="number" /></span>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
         </article>
     </body>
     <script>
@@ -46,6 +53,7 @@
             findBlank();
             makeBlock();
         };
+
 
         let loadJson = () => {
             const xmlHTTP = new XMLHttpRequest();
@@ -152,10 +160,17 @@
             $("td").each(function () {
                 // find the blank and add input tag
                 if ($(this).text() == "") {
-                    let input = $("<input/>");
+                    let input = $('<input type="number"/>');
                     input.addClass("blankInput");
                     $(this).append(input); // add input tag
                     //when user typed number in the blank
+                    for(let i=1; i<10; i++){
+                        $("button").eq(i-1).click(()=>{
+                            // console.log($("td"));
+                            $(`td:contains(${i})`).toggleClass("changeBgc");
+                            $(`input:contains()`).toggleClass("changeBgc");
+                        })
+                    }
                     $(this).keyup(function(e){
                         $(e.target).removeClass("errorRow");
                         
@@ -169,6 +184,7 @@
                     })
                     $(this).keyup(function(e){
                         $(e.target).removeClass("errorDigit");
+                        // for(let i=0; i>0)
                         if($(e.target).val() > 9 || $(e.target).val() == 0){
                             $(e.target).addClass("errorDigit");
                         }
@@ -551,5 +567,7 @@
                 }
             });
         }
+
+        
     </script>
 </html>
