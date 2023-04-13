@@ -169,7 +169,7 @@
                     })
                     $(this).keyup(function(e){
                         $(e.target).removeClass("errorDigit");
-                        if($(e.target).val() > 9){
+                        if($(e.target).val() > 9 || $(e.target).val() == 0){
                             $(e.target).addClass("errorDigit");
                         }
                     })
