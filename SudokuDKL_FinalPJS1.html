@@ -219,8 +219,10 @@
                             ) {
                                 //rowvalidation checking the same row input values
                                 $(e.target).addClass("errorRow");
-                            } else if ($(e.target).val() == ""){
-                                $(e.target).removeClass("errorRow errorCol errorBlock errorInput");
+                            } else if ($(e.target).val() == "") {
+                                $(e.target).removeClass(
+                                    "errorRow errorCol errorBlock errorInput"
+                                );
                             }
                         }
                     });
@@ -230,7 +232,7 @@
                     //         $(e.target).addClass("errorDigit");
                     //     }
                     // });
-                    
+
                     //column validation start
                     $(this).keyup(function () {
                         let classVal = $(this).attr("class"); // typed blank's td class name
@@ -384,23 +386,6 @@
                             }
                         }
 
-                        //rowvalidation
-                        // for(let i=0; i<10; i++){
-                        //         if(input.val() == input.parent().parent().children().eq(i).text() && input.val() != ""){//rowvalidation checking the same row texts
-                        //             input.css("color","red");
-                        //         }else if(input.val() == input.parent().siblings().eq(i).children().eq(0).val() && input.val() != ""){//rowvalidation checking the same row input values
-                        //             input.css("color","red");
-                        //         }else if(input.parent().hasClass(`col${i}`)){
-                        //             for(let x=0; x<10; x++){
-                        //                 if(input.val() == $(`.col${i}`).eq(x).text() && input.val() != ""){//columnvalidation checking the same column texts
-                        //                     input.css("color","red");
-                        //                 }else if(x!=i && input.val() == $(`.col${i}`).children().eq(x).val() && input.val() != ""){//columnvalidation checking the same column input values
-                        //                     // input.css("color","red");
-                        //                     // console.log("test");
-                        //                 }
-                        //             }
-                        //         }
-                        //     }
                         let block1Input = [];
                         let block2Input = [];
                         let block3Input = [];
