@@ -87,6 +87,18 @@ input {
     font-size: 40px;
 }
 
+button {
+    margin-top: 5vh;
+    width: fit-content;
+    height: 4vh;
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(149, 216, 145);
+    color: black;
+    border: 2px solid black;
+
+}
+
 /* test part */
 
 span {
