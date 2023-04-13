@@ -18,10 +18,7 @@
             </ul>
         </header>
         <table></table>
-        <article>
-            <span class="before">_</span>
-            <span class="clicked"><input type="number" /></span>
-        </article>
+        <button class="finish">Done</button>
     </body>
     <script>
         let size, values;
@@ -45,16 +42,16 @@
             }
             findBlank();
             makeBlock();
+            makeCol();
         };
 
         let loadJson = () => {
             const xmlHTTP = new XMLHttpRequest();
             xmlHTTP.onload = function () {
                 let output = JSON.parse(this.responseText)[0];
-                // console.log(output);
                 size = output.size;
                 values = output.values;
-                randomBlank(values); //
+                randomBlank(values);
                 tablePop(values);
             };
             xmlHTTP.open("GET", "./data/source.json", true);
@@ -79,6 +76,42 @@
                     }
                 }
             }
+        }
+        let col1 = [];
+        let col2 = [];
+        let col3 = [];
+        let col4 = [];
+        let col5 = [];
+        let col6 = [];
+        let col7 = [];
+        let col8 = [];
+        let col9 = [];
+        //make a col group and put the value into each col
+        function makeCol() {
+            $("td").each(function () {
+                let colClass = $(this).attr("class");
+                if ($(this).text() != "") {
+                    if (colClass == 1) {
+                        col1.push($(this).text());
+                    } else if (colClass == 2) {
+                        col2.push($(this).text());
+                    } else if (colClass == 3) {
+                        col3.push($(this).text());
+                    } else if (colClass == 4) {
+                        col4.push($(this).text());
+                    } else if (colClass == 5) {
+                        col5.push($(this).text());
+                    } else if (colClass == 6) {
+                        col6.push($(this).text());
+                    } else if (colClass == 7) {
+                        col7.push($(this).text());
+                    } else if (colClass == 8) {
+                        col8.push($(this).text());
+                    } else {
+                        col9.push($(this).text());
+                    }
+                }
+            });
         }
 
         // make a new array to get the numbers(without blank)
@@ -157,6 +190,174 @@
                     $(this).append(input); // add input tag
                     //when user typed number in the blank
                     $(this).keyup(function () {
+                        let classVal = $(this).attr("class"); // typed blank's td class name
+                        // column Validation with input blanks
+                        for (
+                            let i = 0;
+                            i < $(`.${classVal}`).children().length;
+                            i++
+                        ) {
+                            // console.log($(`.${classVal}`).children().eq(i))// choose column's blank
+                            // if typed blank's tr id is different with its column blanks' tr id
+                            if (
+                                $(this)
+                                    .children()
+                                    .parent()
+                                    .parent()
+                                    .attr("id") !=
+                                $(`.${classVal}`)
+                                    .children()
+                                    .eq(i)
+                                    .parent()
+                                    .parent()
+                                    .attr("id")
+                            ) {
+                                // blanks without typed blank
+                                // compare with other blanks value
+                                // if there is same value?(duplicate)
+                                if (
+                                    $(this).children().val() ==
+                                    $(`.${classVal}`).children().eq(i).val()
+                                ) {
+                                    $(this).children().addClass("errorCol"); // changed color
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .removeClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        }
+                        // column validation with fixed numbers(not with blanks)
+                        // if td class name is 1
+                        if (classVal == 1) {
+                            for (let j of col1) {
+                                if ($(this).children().val() == j) {
+                                    $(this).children().addClass("errorCol"); // change color
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .addClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        } else if (classVal == 2) {
+                            for (let j of col2) {
+                                if ($(this).children().val() == j) {
+                                    $(this).children().addClass("errorCol");
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .addClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        } else if (classVal == 3) {
+                            for (let j of col3) {
+                                if ($(this).children().val() == j) {
+                                    $(this).children().addClass("errorCol");
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .addClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        } else if (classVal == 4) {
+                            for (let j of col4) {
+                                if ($(this).children().val() == j) {
+                                    $(this).children().addClass("errorCol");
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .addClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        } else if (classVal == 5) {
+                            for (let j of col5) {
+                                if ($(this).children().val() == j) {
+                                    $(this).children().addClass("errorCol");
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .addClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        } else if (classVal == 6) {
+                            for (let j of col6) {
+                                if ($(this).children().val() == j) {
+                                    $(this).children().addClass("errorCol");
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .addClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        } else if (classVal == 7) {
+                            for (let j of col7) {
+                                if ($(this).children().val() == j) {
+                                    $(this).children().addClass("errorCol");
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .addClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        } else if (classVal == 8) {
+                            for (let j of col8) {
+                                if ($(this).children().val() == j) {
+                                    $(this).children().addClass("errorCol");
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .addClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        } else {
+                            for (let j of col9) {
+                                if ($(this).children().val() == j) {
+                                    $(this).children().addClass("errorCol");
+                                } else if ($(this).children().val() == "") {
+                                    $(this)
+                                        .children()
+                                        .addClass(
+                                            "errorRow errorCol errorBlock errorInput"
+                                        );
+                                }
+                            }
+                        }
+
+                        //rowvalidation
+                        // for(let i=0; i<10; i++){
+                        //         if(input.val() == input.parent().parent().children().eq(i).text() && input.val() != ""){//rowvalidation checking the same row texts
+                        //             input.css("color","red");
+                        //         }else if(input.val() == input.parent().siblings().eq(i).children().eq(0).val() && input.val() != ""){//rowvalidation checking the same row input values
+                        //             input.css("color","red");
+                        //         }else if(input.parent().hasClass(`col${i}`)){
+                        //             for(let x=0; x<10; x++){
+                        //                 if(input.val() == $(`.col${i}`).eq(x).text() && input.val() != ""){//columnvalidation checking the same column texts
+                        //                     input.css("color","red");
+                        //                 }else if(x!=i && input.val() == $(`.col${i}`).children().eq(x).val() && input.val() != ""){//columnvalidation checking the same column input values
+                        //                     // input.css("color","red");
+                        //                     // console.log("test");
+                        //                 }
+                        //             }
+                        //         }
+                        //     }
                         let block1Input = [];
                         let block2Input = [];
                         let block3Input = [];
@@ -307,7 +508,9 @@
                                     } else if (tdVal == "") {
                                         $(this)
                                             .children()
-                                            .removeClass("errorBlock");
+                                            .removeClass(
+                                                "errorRow errorCol errorBlock errorInput"
+                                            );
                                     }
                                 }
                                 // input duplication validation
@@ -334,7 +537,9 @@
                                     } else if (tdVal == "") {
                                         $(this)
                                             .children()
-                                            .removeClass("errorBlock");
+                                            .removeClass(
+                                                "errorRow errorCol errorBlock errorInput"
+                                            );
                                     }
                                 }
                                 // input duplication validation
@@ -358,7 +563,9 @@
                                     } else if (tdVal == "") {
                                         $(this)
                                             .children()
-                                            .removeClass("errorBlock");
+                                            .removeClass(
+                                                "errorRow errorCol errorBlock errorInput"
+                                            );
                                     }
                                 }
                                 // input duplication validation
@@ -385,7 +592,9 @@
                                     } else if (tdVal == "") {
                                         $(this)
                                             .children()
-                                            .removeClass("errorBlock");
+                                            .removeClass(
+                                                "errorRow errorCol errorBlock errorInput"
+                                            );
                                     }
                                 }
                                 // input duplication validation
@@ -413,7 +622,9 @@
                                     } else if (tdVal == "") {
                                         $(this)
                                             .children()
-                                            .removeClass("errorBlock");
+                                            .removeClass(
+                                                "errorRow errorCol errorBlock errorInput"
+                                            );
                                     }
                                 }
                                 // input duplication validation
@@ -437,7 +648,9 @@
                                     } else if (tdVal == "") {
                                         $(this)
                                             .children()
-                                            .removeClass("errorBlock");
+                                            .removeClass(
+                                                "errorRow errorCol errorBlock errorInput"
+                                            );
                                     }
                                 }
                                 // input duplication validation
@@ -464,7 +677,9 @@
                                     } else if (tdVal == "") {
                                         $(this)
                                             .children()
-                                            .removeClass("errorBlock");
+                                            .removeClass(
+                                                "errorRow errorCol errorBlock errorInput"
+                                            );
                                     }
                                 }
                                 // input duplication validation
@@ -491,7 +706,9 @@
                                     } else if (tdVal == "") {
                                         $(this)
                                             .children()
-                                            .removeClass("errorBlock");
+                                            .removeClass(
+                                                "errorRow errorCol errorBlock errorInput"
+                                            );
                                     }
                                 }
                                 // input duplication validation
@@ -515,7 +732,9 @@
                                     } else if (tdVal == "") {
                                         $(this)
                                             .children()
-                                            .removeClass("errorBlock");
+                                            .removeClass(
+                                                "errorRow errorCol errorBlock errorInput"
+                                            );
                                     }
                                 }
                                 // input duplication validation

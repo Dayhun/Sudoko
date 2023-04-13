@@ -54,6 +54,18 @@ input {
     background-color: antiquewhite;
     cursor: pointer;
 }
+.errorRow {
+    color: red;
+    width: 95%;
+    height: 95%;
+    border: none;
+}
+.errorCol {
+    color: red;
+    width: 95%;
+    height: 95%;
+    border: none;
+}
 .errorBlock {
     color: red;
     width: 95%;
