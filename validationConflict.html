@@ -167,6 +167,12 @@
                                 }
                             }
                     })
+                    $(this).keyup(function(e){
+                        $(e.target).removeClass("errorDigit");
+                        if($(e.target).val() > 9){
+                            $(e.target).addClass("errorDigit");
+                        }
+                    })
                     $(this).keyup(function () {
                         let block1Input = [];
                         let block2Input = [];

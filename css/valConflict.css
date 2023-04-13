@@ -108,7 +108,8 @@ article {
     column-gap: 3vh;
 }
 
-.errorRow {
+.errorRow,
+.errorDigit {
     color: red; 
     width: 95%;
     height: 95%;
