@@ -40,6 +40,11 @@ td {
 }
 
 /* ADD */
+input {
+    width: 95%;
+    height: 95%;
+    /* border: none; */
+}
 .blankInput {
     width: 95%;
     height: 95%;
@@ -48,6 +53,18 @@ td {
 .blankInput:hover {
     background-color: antiquewhite;
     cursor: pointer;
+}
+.errorBlock {
+    color: red;
+    width: 95%;
+    height: 95%;
+    border: none;
+}
+.errorInput {
+    color: red;
+    width: 95%;
+    height: 95%;
+    border: none;
 }
 .before:hover {
     background-image: linear-gradient(
