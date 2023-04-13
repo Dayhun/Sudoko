@@ -97,22 +97,13 @@
                     input.addClass("blankInput");
                     $(this).append(input);
                     input.keyup(function(e){
-                        $(e.target).css("color","black");
+                        $(e.target).removeClass("errorRow");
                         
                         for(let i=0; i<10; i++){//rowvalidation
                                 if($(e.target).val() == $(e.target).parent().parent().children().eq(i).text() && $(e.target).val() != ""){//rowvalidation checking the same row texts
-                                    input.css("color","red");
+                                    $(e.target).addClass("errorRow");
                                 }else if($(e.target).val() == $(e.target).parent().siblings().eq(i).children().eq(0).val() && $(e.target).val() != ""){//rowvalidation checking the same row input values
-                                    $(e.target).css("color","red");
-                                }else if($(e.target).parent().hasClass(`col${i}`)){
-                                    for(let x=0; x<10; x++){
-                                        if($(e.target).val() == $(`.col${i}`).eq(x).text() && $(e.target).val() != ""){//columnvalidation checking the same column texts
-                                            $(e.target).css("color","red"); 
-                                        // }else if(x!=i && input.val() == $(`.col${i}`).eq(x).children().eq(0).val() && input.val() != ""){//columnvalidation checking the same column input values
-                                            // input.css("color","red");
-                                            // console.log("test");
-                                        }
-                                    }
+                                    $(e.target).addClass("errorRow");
                                 }
                             }
                     })
