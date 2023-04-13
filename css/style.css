@@ -3,25 +3,31 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 header {
     display: flex;
     align-items: center;
 }
+
 ul {
     display: flex;
     column-gap: 5vh;
 }
+
 table {
     border-collapse: collapse;
 }
+
 tr:nth-child(3),
 tr:nth-child(6) {
     border-bottom: 8px solid black;
 }
+
 td:nth-child(3),
 td:nth-child(6) {
     border-right: 8px solid black;
 }
+
 td {
     height: 7vh;
     width: 7vh;
@@ -34,6 +40,11 @@ td {
 }
 
 /* ADD */
+input {
+    width: 95%;
+    height: 95%;
+    /* border: none; */
+}
 .blankInput {
     width: 95%;
     height: 95%;
@@ -42,6 +53,18 @@ td {
 .blankInput:hover {
     background-color: antiquewhite;
     cursor: pointer;
+}
+.errorBlock {
+    color: red;
+    width: 95%;
+    height: 95%;
+    border: none;
+}
+.errorInput {
+    color: red;
+    width: 95%;
+    height: 95%;
+    border: none;
 }
 .before:hover {
     background-image: linear-gradient(
@@ -56,13 +79,16 @@ td {
 /* td:hover + td{
     background-color: yellow;
 } */
+
 input {
     width: 100%;
     height: 100%;
     text-align: center;
     font-size: 40px;
 }
+
 /* test part */
+
 span {
     height: 7vh;
     width: 7vh;
@@ -80,4 +106,11 @@ span {
 article {
     display: flex;
     column-gap: 3vh;
+}
+
+.errorRow {
+    color: red; 
+    width: 95%;
+    height: 95%;
+
 }
