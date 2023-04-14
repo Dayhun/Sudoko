@@ -19,96 +19,10 @@
         </header>
         <table></table>
         <button class="finish" disabled>Done</button>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header {
-            display: flex;
-            align-items: center;
-        }
-
-        ul {
-            display: flex;
-            column-gap: 5vh;
-        }
-
-        table {
-            border-collapse: collapse;
-        }
-
-        tr:nth-child(3),
-        tr:nth-child(6) {
-            border-bottom: 8px solid black;
-        }
-
-        td:nth-child(3),
-        td:nth-child(6) {
-            border-right: 8px solid black;
-        }
-
-        td {
-            height: 7vh;
-            width: 7vh;
-            border: 3px solid gray;
-            text-align: center;
-            font-size: 35px;
-            font-weight: 600;
-            color: rgb(161, 161, 161);
-            background-color: rgb(252, 252, 252);
-        }
-
-        /* ADD */
-        input {
-            width: 95%;
-            height: 95%;
-            /* border: none; */
-        }
-        .blankInput {
-            width: 95%;
-            height: 95%;
-            border: none;
-        }
-        .blankInput:hover {
-            background-color: antiquewhite;
-            cursor: pointer;
-        }
-        .errorRow {
-            color: red;
-            width: 95%;
-            height: 95%;
-            border: none;
-        }
-        .errorRow,
-        .errorDigit,
-        .errorCol,
-        .errorBlock,
-        .errorInput {
-            color: red;
-            width: 95%;
-            height: 95%;
-        }
-
-        input {
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            font-size: 40px;
-        }
-
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
     </body>
-
     <script>
         let size, values;
+        // make table and add class, id to each tr and td for validation
         let tablePop = (values) => {
             const table = $("table");
             let idx = 0;
@@ -132,16 +46,14 @@
             makeCol();
         };
 
-
-        
-        $(".finish").click(()=>{
+        $(".finish").click(() => {
             checkAnswer();
-        })
+        });
 
-        let checkAnswer = ()=>{
+        let checkAnswer = () => {
             let input = $("input");
-            
-            for(let i=0; i<45; i++){
+
+            for (let i = 0; i < 45; i++) {
                 let thisInput = input.eq(i);
                 let thisTd = thisInput.parent();
                 let inputValue = thisInput.val();
@@ -154,7 +66,7 @@
             // for(let i of answerValue){
             //     console.log($("td"));
             // }
-        }
+        };
 
         let loadJson = () => {
             const xmlHTTP = new XMLHttpRequest();
@@ -188,6 +100,8 @@
                 }
             }
         }
+        // for column validation
+        // to get the text make new array. which is not the blank
         let col1 = [];
         let col2 = [];
         let col3 = [];
@@ -225,6 +139,7 @@
             });
         }
 
+        // for block validation
         // make a new array to get the numbers(without blank)
         let block1 = [];
         let block2 = [];
@@ -292,6 +207,7 @@
             });
         }
 
+        // find the blank
         function findBlank() {
             $("td").each(function () {
                 // find the blank and add input tag
@@ -300,13 +216,13 @@
                     input.addClass("blankInput");
                     $(this).append(input); // add input tag
                     //when user typed number in the blank
-                    // row validation        let enableButton = ()=>{
-                        
+
+                    // row validation 
                     $(this).keyup(function (e) {
-                        $(".finish").prop("disabled",true);
+                        $(".finish").prop("disabled", true);
                         let inputBox = $("input");
 
-                        if(
+                        if (
                             inputBox.eq(0).val() != "" &&
                             inputBox.eq(1).val() != "" &&
                             inputBox.eq(2).val() != "" &&
@@ -353,12 +269,10 @@
                             inputBox.eq(43).val() != "" &&
                             inputBox.eq(44).val() != "" &&
                             inputBox.eq(45).val() != ""
-                            ){
-                            $(".finish").prop("disabled",false);
+                        ) {
+                            $(".finish").prop("disabled", false);
                         }
-                    })
-
-        
+                    });
                     $(this).keyup(function (e) {
                         $(e.target).removeClass("errorRow");
                         for (let i = 0; i < 10; i++) {
@@ -396,14 +310,26 @@
                         }
                     });
 
-                    $(this).keyup(function (e) {//limiting the number
-                        $(e.target).removeClass("errorDigit errorRow errorCol errorBlock errorInput");
-                        if ($(e.target).val() > 9 && $(e.target).val() != "" || $(e.target).val() == 0 && $(e.target).val() != "") {
+                    // Digit Validation
+                    $(this).keyup(function (e) {
+                        //limiting the number
+                        // $(e.target).removeClass(
+                        //     "errorDigit errorRow errorCol errorBlock errorInput"
+                        // );
+                        if (
+                            ($(e.target).val() > 9 &&
+                                $(e.target).val() != "") ||
+                            ($(e.target).val() == 0 && $(e.target).val() != "")
+                        ) {
                             $(e.target).addClass("errorDigit");
+                        } else {
+                            $(e.target).removeClass(
+                                "errorDigit errorRow errorCol errorBlock errorInput"
+                            );
                         }
                     });
 
-                    //column validation start
+                    //column validation
                     $(this).keyup(function () {
                         let classVal = $(this).attr("class"); // typed blank's td class name
                         // column Validation with input blanks
@@ -951,8 +877,5 @@
                 }
             });
         }
-
-
-        
     </script>
 </html>
