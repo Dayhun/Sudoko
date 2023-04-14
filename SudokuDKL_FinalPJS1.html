@@ -22,6 +22,7 @@
     </body>
     <script>
         let size, values;
+        // make table and add class, id to each tr and td for validation
         let tablePop = (values) => {
             const table = $("table");
             let idx = 0;
@@ -99,6 +100,8 @@
                 }
             }
         }
+        // for column validation
+        // to get the text make new array. which is not the blank
         let col1 = [];
         let col2 = [];
         let col3 = [];
@@ -136,6 +139,7 @@
             });
         }
 
+        // for block validation
         // make a new array to get the numbers(without blank)
         let block1 = [];
         let block2 = [];
@@ -203,6 +207,7 @@
             });
         }
 
+        // find the blank
         function findBlank() {
             $("td").each(function () {
                 // find the blank and add input tag
@@ -211,8 +216,8 @@
                     input.addClass("blankInput");
                     $(this).append(input); // add input tag
                     //when user typed number in the blank
-                    // row validation        let enableButton = ()=>{
 
+                    // row validation 
                     $(this).keyup(function (e) {
                         $(".finish").prop("disabled", true);
                         let inputBox = $("input");
@@ -268,7 +273,6 @@
                             $(".finish").prop("disabled", false);
                         }
                     });
-
                     $(this).keyup(function (e) {
                         $(e.target).removeClass("errorRow");
                         for (let i = 0; i < 10; i++) {
@@ -306,6 +310,7 @@
                         }
                     });
 
+                    // Digit Validation
                     $(this).keyup(function (e) {
                         //limiting the number
                         // $(e.target).removeClass(
@@ -324,7 +329,7 @@
                         }
                     });
 
-                    //column validation start
+                    //column validation
                     $(this).keyup(function () {
                         let classVal = $(this).attr("class"); // typed blank's td class name
                         // column Validation with input blanks
