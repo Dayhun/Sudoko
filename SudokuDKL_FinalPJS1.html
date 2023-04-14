@@ -308,15 +308,19 @@
 
                     $(this).keyup(function (e) {
                         //limiting the number
-                        $(e.target).removeClass(
-                            "errorDigit errorRow errorCol errorBlock errorInput"
-                        );
+                        // $(e.target).removeClass(
+                        //     "errorDigit errorRow errorCol errorBlock errorInput"
+                        // );
                         if (
                             ($(e.target).val() > 9 &&
                                 $(e.target).val() != "") ||
                             ($(e.target).val() == 0 && $(e.target).val() != "")
                         ) {
                             $(e.target).addClass("errorDigit");
+                        } else {
+                            $(e.target).removeClass(
+                                "errorDigit errorRow errorCol errorBlock errorInput"
+                            );
                         }
                     });
 
