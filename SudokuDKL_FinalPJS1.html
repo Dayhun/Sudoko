@@ -18,7 +18,7 @@
             </ul>
         </header>
         <table></table>
-        <button class="finish">Done</button>
+        <button class="finish" disabled>Done</button>
     </body>
     <script>
         let size, values;
@@ -43,6 +43,28 @@
             findBlank();
             makeBlock();
             makeCol();
+        };
+
+        $(".finish").click(() => {
+            checkAnswer();
+        });
+
+        let checkAnswer = () => {
+            let input = $("input");
+
+            for (let i = 0; i < 45; i++) {
+                let thisInput = input.eq(i);
+                let thisTd = thisInput.parent();
+                let inputValue = thisInput.val();
+                input.eq(i).remove();
+                thisTd.text(inputValue);
+            }
+            alert("Congratulation!");
+            // console.log(answer[0].values);
+            // let answerValue = answer[0].values;
+            // for(let i of answerValue){
+            //     console.log($("td"));
+            // }
         };
 
         let loadJson = () => {
@@ -185,11 +207,68 @@
             $("td").each(function () {
                 // find the blank and add input tag
                 if ($(this).text() == "") {
-                    let input = $("<input/>");
+                    let input = $('<input type="number"/>');
                     input.addClass("blankInput");
                     $(this).append(input); // add input tag
                     //when user typed number in the blank
-                    // row validation
+                    // row validation        let enableButton = ()=>{
+
+                    $(this).keyup(function (e) {
+                        $(".finish").prop("disabled", true);
+                        let inputBox = $("input");
+
+                        if (
+                            inputBox.eq(0).val() != "" &&
+                            inputBox.eq(1).val() != "" &&
+                            inputBox.eq(2).val() != "" &&
+                            inputBox.eq(3).val() != "" &&
+                            inputBox.eq(4).val() != "" &&
+                            inputBox.eq(5).val() != "" &&
+                            inputBox.eq(6).val() != "" &&
+                            inputBox.eq(7).val() != "" &&
+                            inputBox.eq(8).val() != "" &&
+                            inputBox.eq(9).val() != "" &&
+                            inputBox.eq(10).val() != "" &&
+                            inputBox.eq(11).val() != "" &&
+                            inputBox.eq(12).val() != "" &&
+                            inputBox.eq(13).val() != "" &&
+                            inputBox.eq(14).val() != "" &&
+                            inputBox.eq(15).val() != "" &&
+                            inputBox.eq(16).val() != "" &&
+                            inputBox.eq(17).val() != "" &&
+                            inputBox.eq(18).val() != "" &&
+                            inputBox.eq(19).val() != "" &&
+                            inputBox.eq(20).val() != "" &&
+                            inputBox.eq(21).val() != "" &&
+                            inputBox.eq(22).val() != "" &&
+                            inputBox.eq(23).val() != "" &&
+                            inputBox.eq(24).val() != "" &&
+                            inputBox.eq(25).val() != "" &&
+                            inputBox.eq(26).val() != "" &&
+                            inputBox.eq(27).val() != "" &&
+                            inputBox.eq(28).val() != "" &&
+                            inputBox.eq(29).val() != "" &&
+                            inputBox.eq(30).val() != "" &&
+                            inputBox.eq(31).val() != "" &&
+                            inputBox.eq(32).val() != "" &&
+                            inputBox.eq(33).val() != "" &&
+                            inputBox.eq(34).val() != "" &&
+                            inputBox.eq(35).val() != "" &&
+                            inputBox.eq(36).val() != "" &&
+                            inputBox.eq(37).val() != "" &&
+                            inputBox.eq(38).val() != "" &&
+                            inputBox.eq(39).val() != "" &&
+                            inputBox.eq(40).val() != "" &&
+                            inputBox.eq(41).val() != "" &&
+                            inputBox.eq(42).val() != "" &&
+                            inputBox.eq(43).val() != "" &&
+                            inputBox.eq(44).val() != "" &&
+                            inputBox.eq(45).val() != ""
+                        ) {
+                            $(".finish").prop("disabled", false);
+                        }
+                    });
+
                     $(this).keyup(function (e) {
                         $(e.target).removeClass("errorRow");
                         for (let i = 0; i < 10; i++) {
@@ -226,12 +305,20 @@
                             }
                         }
                     });
-                    // $(this).keyup(function (e) {
-                    //     $(e.target).removeClass("errorDigit");
-                    //     if ($(e.target).val() > 9 || $(e.target).val() == 0) {
-                    //         $(e.target).addClass("errorDigit");
-                    //     }
-                    // });
+
+                    $(this).keyup(function (e) {
+                        //limiting the number
+                        $(e.target).removeClass(
+                            "errorDigit errorRow errorCol errorBlock errorInput"
+                        );
+                        if (
+                            ($(e.target).val() > 9 &&
+                                $(e.target).val() != "") ||
+                            ($(e.target).val() == 0 && $(e.target).val() != "")
+                        ) {
+                            $(e.target).addClass("errorDigit");
+                        }
+                    });
 
                     //column validation start
                     $(this).keyup(function () {

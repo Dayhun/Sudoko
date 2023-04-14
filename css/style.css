@@ -111,3 +111,30 @@ article {
     display: flex;
     column-gap: 3vh;
 }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    height: 8vh;
+    width: 15vh;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 5vh;
+    border: 3.5px solid dimgray;
+    background-color: white;
+    color: gray;
+}
+
+button:hover{
+    background-color: #33b248c1;
+    /* background-color: rgb(161, 161, 161); */
+    color: white;
+    text-shadow: dimgray 2px 2px 2px;
+    /* text-transform: uppercase; */
+}
